@@ -1,13 +1,13 @@
 
 library(shiny)
 
-# Define UI for application that draws a histogram
+# Define UI for application
 shinyUI(fluidPage(
 
     # Application title
     titlePanel('Mortgage simulator'),
 
-    # Sidebar with a slider input for number of bins
+    # Sidebar with inputs for Zillow API
     sidebarLayout(
         sidebarPanel(
             numericInput(
@@ -39,13 +39,13 @@ shinyUI(fluidPage(
                 label = 'Zipcode (optional)',
                 value = ''
             ),
-            helpText('* Downpayment values (%/$) do not automatically balance.'),
+            helpText('* Check your math! Downpayment values (%/$) do not automatically balance.'),
             submitButton('Go!')
         ),
 
-        # Show a plot of the generated distribution
+        # Plot mortgage options
         mainPanel(
-            plotOutput('distPlot'),
+            plotOutput('mortgagePlot'),
             img(
                 src = 'http://www.zillow.com/widgets/GetVersionedResource.htm?path=/static/logos/Zillowlogo_150x40_rounded.gif',
                 height = 40,
