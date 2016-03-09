@@ -4,11 +4,19 @@ RVersion: 3.2.3
 Repos: CRAN=https://cran.rstudio.com/,
     CRANextra=http://www.stats.ox.ac.uk/pub/RWin
 
+Package: BH
+Source: CRAN
+Version: 1.60.0-1
+
+Package: DBI
+Source: CRAN
+Version: 0.3.1
+
 Package: PKI
 Source: CRAN
 Version: 0.1-3
-Hash: aca3e459c659b6d8266538520f72ba19
 Requires: base64enc
+Hash: aca3e459c659b6d8266538520f72ba19
 
 Package: R6
 Source: CRAN
@@ -18,8 +26,8 @@ Hash: c515e41c73294952cbb33ee1c1be5a2d
 Package: RCurl
 Source: CRAN
 Version: 1.95-4.8
-Hash: 79c7d5a8684e44e0e3426d3093aa7d90
 Requires: bitops
+Hash: 79c7d5a8684e44e0e3426d3093aa7d90
 
 Package: RJSONIO
 Source: CRAN
@@ -39,12 +47,16 @@ Hash: 9f8bc34c3c3d2967c7d25f8945216ffa
 Package: ZillowR
 Source: github
 Version: 0.1.0
-Hash: 0db02e37ee4a915c5cf1983a0e98a250
 Requires: RCurl, XML
+Hash: 0db02e37ee4a915c5cf1983a0e98a250
 GithubRepo: ZillowR
 GithubUsername: fascinatingfingers
 GithubRef: master
 GithubSha1: aa64d98b7e31bfb9672699ff5bd03590547ce53c
+
+Package: assertthat
+Source: CRAN
+Version: 0.1
 
 Package: base64enc
 Source: CRAN
@@ -64,14 +76,19 @@ Hash: 21fb53e12f47bff18a2db6ab69bd87a0
 Package: devtools
 Source: CRAN
 Version: 1.10.0
-Hash: 11261bd97eda1c73da7136c4e2031e97
 Requires: digest, git2r, httr, jsonlite, memoise, rstudioapi, whisker,
     withr
+Hash: 11261bd97eda1c73da7136c4e2031e97
 
 Package: digest
 Source: CRAN
 Version: 0.6.9
 Hash: fd55d5a024f160fc001a5ece1e27782d
+
+Package: dplyr
+Source: CRAN
+Version: 0.4.3
+Requires: R6, Rcpp, BH, DBI, assertthat, lazyeval, magrittr
 
 Package: git2r
 Source: CRAN
@@ -81,31 +98,39 @@ Hash: 10b695e315f922046c7d56b9dc7150db
 Package: htmltools
 Source: CRAN
 Version: 0.3
-Hash: 7ccc01f4d22d73d0d9b0d2a7781e7ff6
 Requires: digest
+Hash: 7ccc01f4d22d73d0d9b0d2a7781e7ff6
 
 Package: httpuv
 Source: CRAN
 Version: 1.3.3
-Hash: d440b2e539ccef77b9105051291a7628
 Requires: Rcpp
+Hash: d440b2e539ccef77b9105051291a7628
 
 Package: httr
 Source: CRAN
 Version: 1.1.0
-Hash: 27ffb4b4dbb8ac4019126070d66910fc
 Requires: R6, curl, jsonlite, mime, openssl
+Hash: 27ffb4b4dbb8ac4019126070d66910fc
 
 Package: jsonlite
 Source: CRAN
 Version: 0.9.19
 Hash: 4a983f753b6e88ae0f5a6ac152d8cc32
 
+Package: lazyeval
+Source: CRAN
+Version: 0.1.10
+
+Package: magrittr
+Source: CRAN
+Version: 1.5
+
 Package: memoise
 Source: CRAN
 Version: 1.0.0
-Hash: 56e7087c3559eb7ba72a9afb349bf896
 Requires: digest
+Hash: 56e7087c3559eb7ba72a9afb349bf896
 
 Package: mime
 Source: CRAN
@@ -125,8 +150,8 @@ Hash: 29eacc43b096c5b1a82c8d54a49b030b
 Package: rsconnect
 Source: github
 Version: 0.4.1.11
-Hash: 42468f38db6077004a7e5a1ab5c57db0
 Requires: PKI, RCurl, RJSONIO, digest, packrat, rstudioapi, yaml
+Hash: 42468f38db6077004a7e5a1ab5c57db0
 GithubRepo: rsconnect
 GithubUsername: rstudio
 GithubRef: master
@@ -140,8 +165,8 @@ Hash: f942db72a8f51e968b061f28058e2c57
 Package: shiny
 Source: CRAN
 Version: 0.13.1
-Hash: a4c82c31676563094608d7b5b6495088
 Requires: R6, digest, htmltools, httpuv, jsonlite, mime, xtable
+Hash: a4c82c31676563094608d7b5b6495088
 
 Package: whisker
 Source: CRAN
@@ -162,3 +187,7 @@ Package: yaml
 Source: CRAN
 Version: 2.1.13
 Hash: 4854ccabebc225e8a7309fb4a74980de
+
+Package: zoo
+Source: CRAN
+Version: 1.7-12
