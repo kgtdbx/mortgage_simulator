@@ -57,7 +57,7 @@ future_rates <- data.frame(
 )
 
 future_rates$rate <- na.locf(future_rates$rate, na.rm = FALSE)
-future_rates$rate_sd <- na.locf(future_rates$rate_sd, na.rm = FALSE)
+future_rates$rate_sd <- sd(rates$rate) # na.locf(future_rates$rate_sd, na.rm = FALSE)
 
 plot(
     c(rates$date, future_rates$date),
