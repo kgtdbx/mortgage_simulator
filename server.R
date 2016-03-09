@@ -7,10 +7,7 @@ set_zillow_web_service_id(readLines('zws_id.txt', warn = FALSE))
 
 load('data/future_rates.RData')
 
-cumsum_payments <- function(
-    P = input$price - as.numeric(xmlToList(response$response[['downPayment']])),
-    I = rates$thirtyYearFixed
-) {
+cumsum_payments <- function(P, I) {
     source('mortgage.R')
 
     x <- data.frame(
@@ -82,11 +79,12 @@ shinyServer(function(input, output) {
 
         rm(gt_5yr, predicted_index)
 
+        P <- input$price - as.numeric(xmlToList(response$response[['downPayment']]))
         y <- data.frame(
-            fixed_30 = cumsum_payments(I = rates$thirtyYearFixed),
-            arm = cumsum_payments(I = rates$fiveOneARM),
-            arm_lb = cumsum_payments(I = rates$lb),
-            arm_ub = cumsum_payments(I = rates$ub)
+            fixed_30 = cumsum_payments(P, I = rates$thirtyYearFixed),
+            arm = cumsum_payments(P, I = rates$fiveOneARM),
+            arm_lb = cumsum_payments(P, I = rates$lb),
+            arm_ub = cumsum_payments(P, I = rates$ub)
         )
 
         plot(c(0, nrow(y)), c(min(y), max(y)), type = 'n', ann = FALSE, las = 1)
@@ -94,7 +92,7 @@ shinyServer(function(input, output) {
         lines(seq(nrow(y)), y$fixed_30, lwd = 2)
         lines(seq(nrow(y)), y$arm_lb, lty = 2, col = 'red')
         lines(seq(nrow(y)), y$arm_ub, lty = 2, col = 'red')
-        # lines(seq(nrow(y)), y$arm, lwd = 2, col = 'red')
+        lines(seq(nrow(y)), y$arm, lwd = 2, col = 'red')
     })
 
 })
