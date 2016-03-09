@@ -16,7 +16,7 @@
 #	  N = number of months over which loan is amortized = L x 12
 # see also: http://www.jeacle.ie/mortgage/instructions.html
 
-mortgage <- function(P=500000, I=6, L=30, amort=F, plotData=F) {
+mortgage <- function(P=500000, I=6, L=30, amort=T, plotData=F) {
 	J <- I/(12 * 100)
 	N <- 12 * L
 	M <- P*J/(1-(1+J)^(-N))
@@ -25,7 +25,7 @@ mortgage <- function(P=500000, I=6, L=30, amort=F, plotData=F) {
 	# 		Monthly payment: $", M, " (stored in monthPay)\n
 	# 		Total cost: $", M*N, "\n\n", sep="")
 	# Calculate Amortization for each Month
-	if(amort==T) {
+	if(amort == T) {
 		Pt <- P # current principal or amount of the loan
 		currP <- NULL
 		while(Pt>=0) {
@@ -36,7 +36,7 @@ mortgage <- function(P=500000, I=6, L=30, amort=F, plotData=F) {
 			currP <- c(currP, Pt)
 		}
 		monthP <- c(P, currP[1:(length(currP)-1)])-currP
-		aDFmonth <<- data.frame(
+		aDFmonth <- data.frame(
 					      Amortization=c(P, currP[1:(length(currP)-1)]),
 					      Monthly_Payment=monthP+c((monthPay-monthP)[1:(length(monthP)-1)],0),
 					      Monthly_Principal=monthP,
@@ -50,9 +50,7 @@ mortgage <- function(P=500000, I=6, L=30, amort=F, plotData=F) {
 					     Annual_Interest=tapply(aDFmonth$Monthly_Interest, aDFmonth$Year, sum),
 					     Year=as.vector(na.omit(unique(aDFmonth$Year)))
 					     )
-		aDFyear <<- aDFyear
-		cat("The amortization data for each of the", N, "months are stored in \"aDFmonth\".\n\n")
-		cat("The amortization data for each of the", L, "years are stored in \"aDFyear\".\n\n")
+		aDFyear <- aDFyear
 	}
 	if(plotData==T) {
 	barplot(t(aDFyear[,c(3,4)]),
@@ -64,7 +62,7 @@ mortgage <- function(P=500000, I=6, L=30, amort=F, plotData=F) {
 		ylim=c(0, max(aDFyear$Annual_Payment)*1.3))
 	}
 
-	return(monthPay)
+	return(head(aDFmonth, 1))
 }
 # cat("The monthly mortgage payments and amortization rates can be calculted with the mortgage() function like this: \n
 # 	mortgage(P=500000, I=6, L=30, amort=T, plotData=T)
