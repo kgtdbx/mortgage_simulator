@@ -93,6 +93,7 @@ shinyServer(function(input, output) {
         lines(seq(nrow(y)), y$arm_lb, lty = 2, col = 'red')
         lines(seq(nrow(y)), y$arm_ub, lty = 2, col = 'red')
         lines(seq(nrow(y)), y$arm, lwd = 2, col = 'red')
+        legend('topleft', legend = c('30-year fixed', '5/1 arm'), col = c('black', 'red'), lty = 1, bty = 'n')
     })
 
 })
